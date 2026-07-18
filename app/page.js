@@ -1,41 +1,52 @@
-import FeatureCard from "../components/FeatureCard";
+import IndexCard from "../components/IndexCard";
 
 export default function HomePage() {
   return (
-    <div className="mx-auto max-w-5xl px-6 py-16">
-      <section className="text-center">
-        <h1 className="text-4xl font-bold text-calm-700 sm:text-5xl">
+    <div className="mx-auto grid max-w-5xl gap-10 px-6 py-16 md:grid-cols-2 md:items-start md:gap-16">
+      <div className="md:sticky md:top-16">
+        <span className="font-mono text-xs uppercase tracking-wider text-ink-soft">
+          For students, by students
+        </span>
+        <h1 className="mt-3 font-display text-4xl font-semibold leading-[1.1] text-ink sm:text-5xl">
           You don&apos;t have to carry it alone.
         </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-calm-900/80">
-          HealTogether is a safe, private space for students to check in with
-          themselves, talk to an AI wellness assistant, and connect
-          anonymously with peers who understand.
+        <p className="mt-5 max-w-md text-ink-soft">
+          Academic pressure, burnout, loneliness — it adds up. HealTogether
+          is a private space to check in with yourself, talk things through,
+          and hear from other students who get it.
         </p>
-      </section>
+      </div>
 
-      <section className="mt-12 grid gap-6 sm:grid-cols-2">
-        <FeatureCard
+      <div className="flex flex-col gap-3">
+        <IndexCard
           href="/chat"
+          tag="Talk it through"
           title="AI Wellness Assistant"
-          description="Talk through what's on your mind and get judgment-free, supportive responses."
+          description="A judgment-free space to say what's actually on your mind."
+          accent="marigold"
         />
-        <FeatureCard
+        <IndexCard
           href="/mood"
+          tag="Check in"
           title="Mood Check-in"
-          description="Log how you're feeling and start noticing patterns over time."
+          description="Log how you're feeling and start noticing your patterns."
+          accent="sage"
         />
-        <FeatureCard
+        <IndexCard
           href="/journal"
+          tag="Write it down"
           title="Wellness Journal"
-          description="Write freely in a private space that's just for you."
+          description="A private page that's just for you, no one else reads it."
+          accent="plum"
         />
-        <FeatureCard
+        <IndexCard
           href="/support"
+          tag="You're not the only one"
           title="Anonymous Peer Support"
-          description="Share and connect with other students, without revealing who you are."
+          description="Share and hear from other students, without revealing who you are."
+          accent="dusk"
         />
-      </section>
+      </div>
     </div>
   );
 }
