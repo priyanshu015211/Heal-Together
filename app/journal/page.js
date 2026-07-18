@@ -34,32 +34,37 @@ export default function JournalPage() {
 
   return (
     <div className="mx-auto max-w-2xl px-6 py-10">
-      <h1 className="text-2xl font-bold text-calm-700">Wellness Journal</h1>
-      <p className="mt-1 text-sm text-calm-900/70">
-        A private space to write freely — for your eyes only.
+      <span className="font-mono text-xs uppercase tracking-wider text-plum-dark">
+        Write it down
+      </span>
+      <h1 className="mt-1 font-display text-3xl font-semibold text-ink">
+        Wellness Journal
+      </h1>
+      <p className="mt-1 text-sm text-ink-soft">
+        A private page that&apos;s just for you — no one else reads it.
       </p>
 
       <form
         onSubmit={submitEntry}
-        className="mt-6 space-y-3 rounded-xl border border-calm-200 bg-white p-6"
+        className="mt-6 space-y-3 border-l-4 border-plum bg-card p-6"
       >
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Title (optional)"
-          className="w-full rounded-lg border border-calm-200 px-4 py-2 text-sm focus:border-calm-500 focus:outline-none"
+          className="w-full border border-rule bg-paper px-4 py-2 text-sm focus:border-plum-dark focus:outline-none"
         />
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="Write what's on your mind…"
           rows={6}
-          className="w-full rounded-lg border border-calm-200 px-4 py-2 text-sm focus:border-calm-500 focus:outline-none"
+          className="w-full border border-rule bg-ruled bg-paper px-4 py-2 text-sm leading-8 focus:border-plum-dark focus:outline-none"
         />
         <button
           type="submit"
           disabled={!content.trim()}
-          className="rounded-lg bg-calm-600 px-5 py-2 text-sm font-medium text-white hover:bg-calm-700 disabled:opacity-50"
+          className="bg-plum-dark px-5 py-2 text-sm font-medium text-white transition hover:opacity-90 disabled:opacity-50"
         >
           Save entry
         </button>
@@ -67,17 +72,16 @@ export default function JournalPage() {
 
       <div className="mt-8 space-y-3">
         {entries.map((entry) => (
-          <div
-            key={entry.id}
-            className="rounded-lg border border-calm-200 bg-white p-4 text-sm"
-          >
+          <div key={entry.id} className="border-l-4 border-plum bg-card p-4 text-sm">
             <div className="flex items-center justify-between">
-              <h3 className="font-semibold text-calm-700">{entry.title}</h3>
-              <span className="text-xs text-calm-900/50">
+              <h3 className="font-display font-semibold text-ink">{entry.title}</h3>
+              <span className="font-mono text-xs text-ink-soft">
                 {new Date(entry.createdAt).toLocaleString()}
               </span>
             </div>
-            <p className="mt-1 whitespace-pre-wrap text-calm-900/80">{entry.content}</p>
+            <p className="mt-2 whitespace-pre-wrap leading-8 text-ink-soft">
+              {entry.content}
+            </p>
           </div>
         ))}
       </div>
