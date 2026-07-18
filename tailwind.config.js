@@ -7,21 +7,24 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        calm: {
-          50: "#f4faf9",
-          100: "#e3f2ef",
-          200: "#c3e4de",
-          300: "#96cfc4",
-          400: "#63b3a4",
-          500: "#3f9686",
-          600: "#2f7a6d",
-          700: "#286259",
-          800: "#234f49",
-          900: "#1f423d",
-        },
+        paper: "#EEF1F3",
+        card: "#FBFCFC",
+        ink: "#232830",
+        "ink-soft": "#5B6470",
+        rule: "#D7DCE0",
+        plum: { DEFAULT: "#5B3A5C", dark: "#432A44", light: "#EFE6EF" },
+        marigold: { DEFAULT: "#DE9E32", dark: "#B87F22", light: "#FBF0DC" },
+        sage: { DEFAULT: "#71875F", dark: "#576A47", light: "#E8EDE3" },
+        dusk: { DEFAULT: "#4E6E8C", dark: "#3B5468", light: "#E4EBF0" },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        display: ["Fraunces", "serif"],
+        sans: ["Work Sans", "system-ui", "sans-serif"],
+        mono: ["IBM Plex Mono", "monospace"],
+      },
+      backgroundImage: {
+        ruled:
+          "repeating-linear-gradient(to bottom, transparent, transparent 31px, #D7DCE0 32px)",
       },
     },
   },
