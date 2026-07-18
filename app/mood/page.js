@@ -45,14 +45,17 @@ export default function MoodPage() {
 
   return (
     <div className="mx-auto max-w-2xl px-6 py-10">
-      <h1 className="text-2xl font-bold text-calm-700">Mood Check-in</h1>
-      <p className="mt-1 text-sm text-calm-900/70">
-        How are you feeling right now?
-      </p>
+      <span className="font-mono text-xs uppercase tracking-wider text-sage-dark">
+        Check in
+      </span>
+      <h1 className="mt-1 font-display text-3xl font-semibold text-ink">
+        Mood Check-in
+      </h1>
+      <p className="mt-1 text-sm text-ink-soft">How are you feeling right now?</p>
 
       <form
         onSubmit={submitMood}
-        className="mt-6 space-y-4 rounded-xl border border-calm-200 bg-white p-6"
+        className="mt-6 space-y-4 border-l-4 border-sage bg-card p-6"
       >
         <div className="flex flex-wrap gap-3">
           {MOODS.map((m) => (
@@ -60,10 +63,10 @@ export default function MoodPage() {
               type="button"
               key={m.label}
               onClick={() => setSelected(m)}
-              className={`flex flex-col items-center gap-1 rounded-lg border px-4 py-3 text-sm ${
+              className={`flex flex-col items-center gap-1 border px-4 py-3 text-sm ${
                 selected?.label === m.label
-                  ? "border-calm-500 bg-calm-100"
-                  : "border-calm-200 hover:bg-calm-50"
+                  ? "border-sage-dark bg-sage-light"
+                  : "border-rule hover:bg-paper"
               }`}
             >
               <span className="text-2xl">{m.emoji}</span>
@@ -77,32 +80,31 @@ export default function MoodPage() {
           onChange={(e) => setNote(e.target.value)}
           placeholder="Anything you want to add? (optional)"
           rows={3}
-          className="w-full rounded-lg border border-calm-200 px-4 py-2 text-sm focus:border-calm-500 focus:outline-none"
+          className="w-full border border-rule bg-paper px-4 py-2 text-sm focus:border-sage-dark focus:outline-none"
         />
 
         <button
           type="submit"
           disabled={!selected}
-          className="rounded-lg bg-calm-600 px-5 py-2 text-sm font-medium text-white hover:bg-calm-700 disabled:opacity-50"
+          className="bg-sage-dark px-5 py-2 text-sm font-medium text-white transition hover:opacity-90 disabled:opacity-50"
         >
           Log mood
         </button>
 
-        {status && <p className="text-sm text-calm-600">{status}</p>}
+        {status && <p className="font-mono text-xs text-sage-dark">{status}</p>}
       </form>
 
       {history.length > 0 && (
         <div className="mt-8">
-          <h2 className="text-sm font-semibold text-calm-700">Recent check-ins</h2>
-          <ul className="mt-3 space-y-2">
+          <h2 className="font-mono text-xs uppercase tracking-wider text-ink-soft">
+            Recent check-ins
+          </h2>
+          <ul className="mt-3 divide-y divide-rule border-t border-rule">
             {history.slice(0, 10).map((entry) => (
-              <li
-                key={entry.id}
-                className="rounded-lg border border-calm-200 bg-white px-4 py-2 text-sm"
-              >
-                <span className="font-medium">{entry.mood}</span>
-                {entry.note && <span className="text-calm-900/70"> — {entry.note}</span>}
-                <div className="text-xs text-calm-900/50">
+              <li key={entry.id} className="py-3 text-sm">
+                <span className="font-medium text-ink">{entry.mood}</span>
+                {entry.note && <span className="text-ink-soft"> — {entry.note}</span>}
+                <div className="mt-0.5 font-mono text-xs text-ink-soft">
                   {new Date(entry.createdAt).toLocaleString()}
                 </div>
               </li>
