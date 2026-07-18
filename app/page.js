@@ -1,76 +1,60 @@
-"use client";
+import IndexCard from "../components/IndexCard";
 
-import { useEffect, useState } from "react";
-
-export default function SupportPage() {
-  const [message, setMessage] = useState("");
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    fetch("/api/support")
-      .then((res) => res.json())
-      .then((data) => setPosts(data.posts || []))
-      .catch(() => {});
-  }, []);
-
-  async function submitPost(e) {
-    e.preventDefault();
-    if (!message.trim()) return;
-
-    const res = await fetch("/api/support", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message }),
-    });
-
-    if (res.ok) {
-      const data = await res.json();
-      setPosts([data.post, ...posts]);
-      setMessage("");
-    }
-  }
-
+export default function HomePage() {
   return (
-    <div className="mx-auto max-w-2xl px-6 py-10">
-      <span className="font-mono text-xs uppercase tracking-wider text-dusk-dark">
-        You&apos;re not the only one
-      </span>
-      <h1 className="mt-1 font-display text-3xl font-semibold text-ink">
-        Anonymous Peer Support
-      </h1>
-      <p className="mt-1 text-sm text-ink-soft">
-        Share what you&apos;re going through. No names, no profiles — just
-        students supporting students.
-      </p>
+    <div className="mx-auto grid max-w-5xl gap-10 px-6 py-16 md:grid-cols-2 md:items-start md:gap-16">
+      <div className="md:sticky md:top-16">
+        <span className="font-mono text-xs uppercase tracking-wider text-marigold-dark">
+          For students, by students ✨
+        </span>
+        <h1 className="mt-3 font-display text-4xl font-semibold leading-[1.1] text-ink sm:text-5xl">
+          You don&apos;t have to carry it alone.
+        </h1>
+        <p className="mt-5 max-w-md text-ink-soft">
+          Academic pressure, burnout, loneliness — it adds up. HealTogether
+          is a warm, private space to check in with yourself, talk things
+          through, and hear from other students who get it.
+        </p>
+        <div className="mt-6 flex gap-2 text-2xl">
+          <span aria-hidden>🌱</span>
+          <span aria-hidden>💛</span>
+          <span aria-hidden>🫶</span>
+        </div>
+      </div>
 
-      <form
-        onSubmit={submitPost}
-        className="mt-6 flex gap-2 border-l-4 border-dusk bg-card p-4"
-      >
-        <input
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Share anonymously…"
-          className="flex-1 border border-rule bg-paper px-4 py-2 text-sm focus:border-dusk-dark focus:outline-none"
+      <div className="flex flex-col gap-3">
+        <IndexCard
+          href="/chat"
+          tag="Talk it through"
+          title="AI Wellness Assistant"
+          description="A judgment-free space to say what's actually on your mind."
+          accent="marigold"
+          emoji="💬"
         />
-        <button
-          type="submit"
-          disabled={!message.trim()}
-          className="bg-dusk-dark px-5 py-2 text-sm font-medium text-white transition hover:opacity-90 disabled:opacity-50"
-        >
-          Post
-        </button>
-      </form>
-
-      <div className="mt-8 space-y-3">
-        {posts.map((post) => (
-          <div key={post.id} className="border-l-4 border-dusk bg-card p-4 text-sm">
-            <p className="text-ink-soft">{post.message}</p>
-            <span className="mt-1 block font-mono text-xs text-ink-soft">
-              anonymous · {new Date(post.createdAt).toLocaleString()}
-            </span>
-          </div>
-        ))}
+        <IndexCard
+          href="/mood"
+          tag="Check in"
+          title="Mood Check-in"
+          description="Log how you're feeling and start noticing your patterns."
+          accent="sage"
+          emoji="🌤️"
+        />
+        <IndexCard
+          href="/journal"
+          tag="Write it down"
+          title="Wellness Journal"
+          description="A private page that's just for you, no one else reads it."
+          accent="plum"
+          emoji="📝"
+        />
+        <IndexCard
+          href="/support"
+          tag="You're not the only one"
+          title="Anonymous Peer Support"
+          description="Share and hear from other students, without revealing who you are."
+          accent="dusk"
+          emoji="🤝"
+        />
       </div>
     </div>
   );
