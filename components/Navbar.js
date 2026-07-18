@@ -4,10 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const tabs = [
-  { href: "/chat", label: "Assistant", accent: "marigold" },
-  { href: "/mood", label: "Mood", accent: "sage" },
-  { href: "/journal", label: "Journal", accent: "plum" },
-  { href: "/support", label: "Peer Support", accent: "dusk" },
+  { href: "/chat", label: "Assistant", emoji: "💬", accent: "marigold" },
+  { href: "/mood", label: "Mood", emoji: "🌤️", accent: "sage" },
+  { href: "/journal", label: "Journal", emoji: "📝", accent: "plum" },
+  { href: "/support", label: "Peer Support", emoji: "🤝", accent: "dusk" },
 ];
 
 const accentClasses = {
@@ -27,7 +27,7 @@ export default function Navbar() {
           href="/"
           className="font-display text-xl font-semibold tracking-tight text-ink"
         >
-          HealTogether
+          HealTogether 🌿
         </Link>
 
         <nav className="mt-4 flex gap-1 border-b border-rule">
@@ -38,18 +38,19 @@ export default function Navbar() {
               <Link
                 key={tab.href}
                 href={tab.href}
-                className={`relative -mb-px rounded-t-md border border-b-0 px-4 py-2 text-sm font-medium transition ${
+                className={`relative -mb-px flex items-center gap-1.5 rounded-t-xl border border-b-0 px-4 py-2.5 text-sm font-medium transition ${
                   active
-                    ? `border-rule bg-card ${accent.text}`
-                    : "border-transparent text-ink-soft hover:text-ink"
+                    ? `border-rule bg-card shadow-soft ${accent.text}`
+                    : "border-transparent text-ink-soft hover:bg-card/60 hover:text-ink"
                 }`}
               >
+                <span aria-hidden>{tab.emoji}</span>
+                {tab.label}
                 {active && (
                   <span
-                    className={`absolute inset-x-0 top-0 h-[3px] rounded-t-md ${accent.bar}`}
+                    className={`absolute inset-x-3 top-0 h-[3px] rounded-full ${accent.bar}`}
                   />
                 )}
-                {tab.label}
               </Link>
             );
           })}
