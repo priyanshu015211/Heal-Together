@@ -38,7 +38,7 @@ export default function MoodPage() {
       setHistory([data.entry, ...history]);
       setSelected(null);
       setNote("");
-      setStatus("Logged. Thanks for checking in with yourself today.");
+      setStatus("Logged 🌤️ Thanks for checking in with yourself today.");
       setTimeout(() => setStatus(""), 4000);
     }
   }
@@ -46,7 +46,7 @@ export default function MoodPage() {
   return (
     <div className="mx-auto max-w-2xl px-6 py-10">
       <span className="font-mono text-xs uppercase tracking-wider text-sage-dark">
-        Check in
+        Check in 🌤️
       </span>
       <h1 className="mt-1 font-display text-3xl font-semibold text-ink">
         Mood Check-in
@@ -55,7 +55,7 @@ export default function MoodPage() {
 
       <form
         onSubmit={submitMood}
-        className="mt-6 space-y-4 border-l-4 border-sage bg-card p-6"
+        className="mt-6 space-y-4 rounded-2xl bg-card p-6 shadow-soft"
       >
         <div className="flex flex-wrap gap-3">
           {MOODS.map((m) => (
@@ -63,10 +63,10 @@ export default function MoodPage() {
               type="button"
               key={m.label}
               onClick={() => setSelected(m)}
-              className={`flex flex-col items-center gap-1 border px-4 py-3 text-sm ${
+              className={`flex flex-col items-center gap-1 rounded-2xl border px-4 py-3 text-sm transition ${
                 selected?.label === m.label
                   ? "border-sage-dark bg-sage-light"
-                  : "border-rule hover:bg-paper"
+                  : "border-rule hover:-translate-y-0.5 hover:bg-paper"
               }`}
             >
               <span className="text-2xl">{m.emoji}</span>
@@ -80,13 +80,13 @@ export default function MoodPage() {
           onChange={(e) => setNote(e.target.value)}
           placeholder="Anything you want to add? (optional)"
           rows={3}
-          className="w-full border border-rule bg-paper px-4 py-2 text-sm focus:border-sage-dark focus:outline-none"
+          className="w-full rounded-xl border border-rule bg-paper px-4 py-2 text-sm focus:border-sage-dark focus:outline-none"
         />
 
         <button
           type="submit"
           disabled={!selected}
-          className="bg-sage-dark px-5 py-2 text-sm font-medium text-white transition hover:opacity-90 disabled:opacity-50"
+          className="rounded-full bg-sage-dark px-6 py-2.5 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-50"
         >
           Log mood
         </button>
@@ -99,9 +99,12 @@ export default function MoodPage() {
           <h2 className="font-mono text-xs uppercase tracking-wider text-ink-soft">
             Recent check-ins
           </h2>
-          <ul className="mt-3 divide-y divide-rule border-t border-rule">
+          <ul className="mt-3 space-y-2">
             {history.slice(0, 10).map((entry) => (
-              <li key={entry.id} className="py-3 text-sm">
+              <li
+                key={entry.id}
+                className="rounded-xl bg-card px-4 py-3 text-sm shadow-soft"
+              >
                 <span className="font-medium text-ink">{entry.mood}</span>
                 {entry.note && <span className="text-ink-soft"> — {entry.note}</span>}
                 <div className="mt-0.5 font-mono text-xs text-ink-soft">
