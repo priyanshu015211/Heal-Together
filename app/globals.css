@@ -8,5 +8,9 @@ body {
 }
 
 body {
-  @apply bg-calm-50 text-calm-900;
+  @apply bg-paper text-ink font-sans;
+}
+
+.tab-active {
+  @apply bg-card text-ink;
 }
