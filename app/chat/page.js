@@ -52,27 +52,32 @@ export default function ChatPage() {
 
   return (
     <div className="mx-auto flex max-w-2xl flex-col px-6 py-10">
-      <h1 className="text-2xl font-bold text-calm-700">AI Wellness Assistant</h1>
-      <p className="mt-1 text-sm text-calm-900/70">
+      <span className="font-mono text-xs uppercase tracking-wider text-marigold-dark">
+        Assistant
+      </span>
+      <h1 className="mt-1 font-display text-3xl font-semibold text-ink">
+        AI Wellness Assistant
+      </h1>
+      <p className="mt-1 text-sm text-ink-soft">
         A private, judgment-free space to talk things through.
       </p>
 
-      <div className="mt-6 flex-1 space-y-3 rounded-xl border border-calm-200 bg-white p-4">
+      <div className="mt-6 flex-1 space-y-3 border-l-4 border-marigold bg-card p-4">
         {messages.map((m, i) => (
           <div
             key={i}
-            className={`max-w-[80%] rounded-lg px-4 py-2 text-sm ${
+            className={`max-w-[80%] px-4 py-2 text-sm ${
               m.role === "assistant"
-                ? "bg-calm-100 text-calm-900"
-                : "ml-auto bg-calm-500 text-white"
+                ? "bg-marigold-light text-ink"
+                : "ml-auto bg-ink text-paper"
             }`}
           >
             {m.content}
           </div>
         ))}
         {loading && (
-          <div className="max-w-[80%] rounded-lg bg-calm-100 px-4 py-2 text-sm text-calm-900/60">
-            Typing…
+          <div className="max-w-[80%] bg-marigold-light px-4 py-2 font-mono text-xs text-ink-soft">
+            typing…
           </div>
         )}
       </div>
@@ -82,12 +87,12 @@ export default function ChatPage() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type how you're feeling…"
-          className="flex-1 rounded-lg border border-calm-200 px-4 py-2 text-sm focus:border-calm-500 focus:outline-none"
+          className="flex-1 border border-rule bg-card px-4 py-2 text-sm focus:border-marigold-dark focus:outline-none"
         />
         <button
           type="submit"
           disabled={loading}
-          className="rounded-lg bg-calm-600 px-5 py-2 text-sm font-medium text-white hover:bg-calm-700 disabled:opacity-50"
+          className="bg-marigold-dark px-5 py-2 text-sm font-medium text-white transition hover:opacity-90 disabled:opacity-50"
         >
           Send
         </button>
