@@ -32,26 +32,31 @@ export default function SupportPage() {
 
   return (
     <div className="mx-auto max-w-2xl px-6 py-10">
-      <h1 className="text-2xl font-bold text-calm-700">Anonymous Peer Support</h1>
-      <p className="mt-1 text-sm text-calm-900/70">
-        Share what you're going through. No names, no profiles — just
+      <span className="font-mono text-xs uppercase tracking-wider text-dusk-dark">
+        You&apos;re not the only one 🤝
+      </span>
+      <h1 className="mt-1 font-display text-3xl font-semibold text-ink">
+        Anonymous Peer Support
+      </h1>
+      <p className="mt-1 text-sm text-ink-soft">
+        Share what you&apos;re going through. No names, no profiles — just
         students supporting students.
       </p>
 
       <form
         onSubmit={submitPost}
-        className="mt-6 flex gap-2 rounded-xl border border-calm-200 bg-white p-4"
+        className="mt-6 flex gap-2 rounded-2xl bg-card p-4 shadow-soft"
       >
         <input
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Share anonymously…"
-          className="flex-1 rounded-lg border border-calm-200 px-4 py-2 text-sm focus:border-calm-500 focus:outline-none"
+          className="flex-1 rounded-full border border-rule bg-paper px-4 py-2.5 text-sm focus:border-dusk-dark focus:outline-none"
         />
         <button
           type="submit"
           disabled={!message.trim()}
-          className="rounded-lg bg-calm-600 px-5 py-2 text-sm font-medium text-white hover:bg-calm-700 disabled:opacity-50"
+          className="rounded-full bg-dusk-dark px-6 py-2.5 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-50"
         >
           Post
         </button>
@@ -59,13 +64,11 @@ export default function SupportPage() {
 
       <div className="mt-8 space-y-3">
         {posts.map((post) => (
-          <div
-            key={post.id}
-            className="rounded-lg border border-calm-200 bg-white p-4 text-sm"
-          >
-            <p className="text-calm-900/80">{post.message}</p>
-            <span className="mt-1 block text-xs text-calm-900/50">
-              Anonymous · {new Date(post.createdAt).toLocaleString()}
+          <div key={post.id} className="rounded-2xl bg-card p-4 text-sm shadow-soft">
+            <p className="text-ink-soft">{post.message}</p>
+            <span className="mt-2 flex items-center justify-between font-mono text-xs text-ink-soft">
+              anonymous · {new Date(post.createdAt).toLocaleString()}
+              <span aria-hidden>🤍</span>
             </span>
           </div>
         ))}
