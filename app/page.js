@@ -107,7 +107,7 @@ export default function HomePage() {
           &ldquo;It&apos;s okay to not have it figured out. Start with just
           one check-in today.&rdquo;
         </p>
-        
+        <a
           href="/mood"
           className="mt-5 inline-block rounded-full bg-plum-dark px-6 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
         >
